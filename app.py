@@ -10,6 +10,8 @@ import cv2
 import torch.nn.functional as F
 import io
 from datetime import datetime
+import gdown
+import os
 
 # PDF
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Image as RLImage
@@ -49,8 +51,15 @@ class HybridModel(nn.Module):
 
 @st.cache_resource
 def load_model():
+    MODEL_PATH = "model.pth"
+
+    # Download model if not present
+    if not os.path.exists(MODEL_PATH):
+        url = "https://drive.google.com/uc?id=1uPC8rgv2pYCLC_12WfxvYx-RgoU7Tk7W"
+        gdown.download(url, MODEL_PATH, quiet=False)
+
     model = HybridModel(num_classes=len(classes))
-    model.load_state_dict(torch.load("mobilenet_transformer.pth", map_location="cpu"))
+    model.load_state_dict(torch.load(MODEL_PATH, map_location="cpu"))
     model.eval()
     return model
 
@@ -194,18 +203,15 @@ elif page == "🔍 MRI Analysis":
                 styles = getSampleStyleSheet()
                 story = []
 
-                # Title
                 story.append(Paragraph("AI-Assisted Alzheimer Detection Report", styles["Title"]))
                 story.append(Paragraph("<br/>", styles["Normal"]))
 
-                # Scan info
                 scan_id = "MRI-" + datetime.now().strftime("%Y%m%d%H%M%S")
                 story.append(Paragraph(f"Scan ID: {scan_id}", styles["Normal"]))
                 story.append(Paragraph(f"Prediction: {predicted_class}", styles["Normal"]))
                 story.append(Paragraph(f"Confidence: {confidence_score:.2f}%", styles["Normal"]))
                 story.append(Paragraph("<br/>", styles["Normal"]))
 
-                # Interpretation
                 story.append(Paragraph("Clinical Interpretation", styles["Heading2"]))
                 story.append(Paragraph(
                     f"The MRI scan shows patterns consistent with {predicted_class}.",
@@ -214,18 +220,15 @@ elif page == "🔍 MRI Analysis":
 
                 story.append(Paragraph("<br/>", styles["Normal"]))
 
-                # Probabilities
                 story.append(Paragraph("Probability Analysis", styles["Heading2"]))
                 for i, cls in enumerate(classes):
                     story.append(Paragraph(f"{cls}: {probs[i]*100:.2f}%", styles["Normal"]))
 
                 story.append(Paragraph("<br/>", styles["Normal"]))
 
-                # Save images
                 image.save("original.png")
                 Image.fromarray(overlay).save("heatmap.png")
 
-                # Images
                 story.append(Paragraph("Original MRI", styles["Heading3"]))
                 story.append(RLImage("original.png", width=250, height=250))
 
@@ -236,7 +239,6 @@ elif page == "🔍 MRI Analysis":
 
                 story.append(Paragraph("<br/>", styles["Normal"]))
 
-                # Recommendation
                 story.append(Paragraph("Recommendation", styles["Heading2"]))
                 story.append(Paragraph(
                     "This AI analysis is for screening purposes only. Consult a medical professional.",
