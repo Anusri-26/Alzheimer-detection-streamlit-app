@@ -65,19 +65,20 @@ The hybrid MobileNet-Transformer model achieved strong performance on MRI image 
 
 ### 🔹 Original MRI vs Heatmap
 ![Original MRI](original.png)
-![Heatmap](heatmap.png)
+![Heatmap](heatmap.png)  
+Grad-CAM visualization highlighting important regions in the MRI that influenced the model's prediction.
 
-### 🔹 Confusion Matrix
+### 🔹 Confusion Matrix  
+![Confusion Matrix](confusion_matrix.png)  
+Shows classification performance across different Alzheimer stages.
 
-![Confusion Matrix](confusion_matrix.png)
+### 🔹 Accuracy Plot  
+![Accuracy](accuracy_plot.png)  
+Represents training and validation accuracy over epochs.
 
-### 🔹 Accuracy Plot
-
-![Accuracy](accuracy_plot.png)
-
-### 🔹 Loss Plot
-
-![Loss](loss_plot.png)
+### 🔹 Loss Plot  
+![Loss](loss_plot.png)  
+Indicates model convergence and training stability over epochs.
 
 ---
 
