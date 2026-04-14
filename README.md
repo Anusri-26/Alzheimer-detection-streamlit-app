@@ -20,6 +20,16 @@ https://alzheimer-detection-app.streamlit.app/
 
 ---
 
+## ⭐ Key Highlights
+
+* Hybrid CNN + Transformer architecture
+* Real-time web deployment using Streamlit
+* Explainable AI using Grad-CAM
+* Automated PDF report generation
+* High accuracy with minimal overfitting
+
+---
+
 ## 🧠 Model Architecture
 
 This project uses a hybrid deep learning model:
@@ -51,9 +61,55 @@ The hybrid MobileNet-Transformer model achieved strong performance on MRI image 
 
 ---
 
+## 📸 Sample Outputs
+
+### 🔹 Original MRI vs Heatmap
+
+![Heatmap](heatmap.png)
+
+### 🔹 Confusion Matrix
+
+![Confusion Matrix](confusion_matrix.png)
+
+### 🔹 Accuracy Plot
+
+![Accuracy](accuracy_plot.png)
+
+### 🔹 Loss Plot
+
+![Loss](loss_plot.png)
+
+---
+
+## 📊 Dataset
+
+The model is trained on the **Augmented Alzheimer MRI Dataset** available on Kaggle:
+
+🔗 Dataset Link:
+https://www.kaggle.com/datasets/uraninjo/augmented-alzheimer-mri-dataset-v2
+
+### 📌 Dataset Details
+
+* Categories:
+
+  * Non-Demented
+  * Very Mild Demented
+  * Mild Demented
+  * Moderate Demented
+* Contains augmented MRI images for improved model generalization
+* Images resized to 224×224 for model input
+
+### ⚙️ Preprocessing
+
+* Image resizing
+* Normalization
+* Data augmentation (included in dataset)
+
+---
+
 ## 📂 Project Structure
 
-```
+```bash
 alzheimer-detection-streamlit-app/
 │── app.py
 │── requirements.txt
@@ -110,4 +166,3 @@ This application is intended for **screening and educational purposes only** and
 ## 👩‍💻 Author
 
 Developed by Anusri and team as part of a final-year B.Tech project in Artificial Intelligence & Data Science, focusing on AI-driven medical image analysis.
-
