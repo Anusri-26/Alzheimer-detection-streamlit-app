@@ -64,7 +64,7 @@ The hybrid MobileNet-Transformer model achieved strong performance on MRI image 
 ## 📸 Sample Outputs
 
 ### 🔹 Original MRI vs Heatmap
-
+![Original MRI](original.png)
 ![Heatmap](heatmap.png)
 
 ### 🔹 Confusion Matrix
