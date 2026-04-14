@@ -1,0 +1,5 @@
+python -m venv venv
+venv\Scripts\activate
+pip install streamlit torch torchvision pillow pandas opencv-python-headless
+pip install opencv-python-headless
+streamlit run app.py
